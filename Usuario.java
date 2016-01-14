@@ -23,6 +23,7 @@ public class Usuario
         carbohidratosIngeridos = 0;
         grasasIngeridas = 0;
         caloriasIngeridas = 0;
+        aliMasCalorico = null;
     }
 
     /**
@@ -106,8 +107,6 @@ public class Usuario
      */
     public void alimentoMasCalorias()
     {
-        String nombreAli;
-        
         if (getCalorias() > 0){
             System.out.println("Alimento más calórico ingerido por este usuario hasta el momento: " + aliMasCalorico.getNombre() + " (" + aliMasCalorico.getCalorias() + " calorias por cada 100 gramos");
         }
