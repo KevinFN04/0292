@@ -61,6 +61,14 @@ public class Alimento
     }
 
     /**
+     * Nos devuelve el nombre del alimento
+     */
+    public String getNombre() 
+    {
+        return nombre;
+    }
+    
+    /**
      * Este método nos muestra los valores de los distintos componentes del alimento 
      */
     public void muestraDatos()

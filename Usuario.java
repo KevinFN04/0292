@@ -10,6 +10,8 @@ public class Usuario
     private float grasasIngeridas;
     //calorias totales ingeridas por el usuario
     private float caloriasIngeridas;
+    //Alimento mas calorico
+    private Alimento aliMasCalorico;
 
     /**
      *Constructor de la clase usuario
@@ -27,11 +29,15 @@ public class Usuario
      * Metodo utilizado para dar de comer al usuario
      */
     public void comer(Alimento alimentoQueCome, float gramosDelAlimento)
-    {
+    {     
         proteinasIngeridas = proteinasIngeridas + (alimentoQueCome.getProteinas() / 100 * gramosDelAlimento);
         carbohidratosIngeridos = carbohidratosIngeridos + (alimentoQueCome.getCarbohidratos() / 100 * gramosDelAlimento);
         grasasIngeridas = grasasIngeridas + (alimentoQueCome.getGrasas() / 100 * gramosDelAlimento);
         caloriasIngeridas = caloriasIngeridas + (alimentoQueCome.getCalorias() / 100 * gramosDelAlimento);
+        
+        if (aliMasCalorico == null || aliMasCalorico.getCalorias() <= alimentoQueCome.getCalorias()){
+            aliMasCalorico = alimentoQueCome;
+        }
     }
 
     
@@ -92,6 +98,21 @@ public class Usuario
         }
         else{
             System.out.println(nombreCompleto + " y " + nombreOtro + " han consumido la misma cantidad de calorias (" + caloriasIngeridas + " igual a " + caloriasOtro + ").");
+        }
+    }
+    
+    /**
+     * Metodo para imprimir el alimento con mayor calorias.
+     */
+    public void alimentoMasCalorias()
+    {
+        String nombreAli;
+        
+        if (getCalorias() > 0){
+            System.out.println("Alimento más calórico ingerido por este usuario hasta el momento: " + aliMasCalorico.getNombre() + " (" + aliMasCalorico.getCalorias() + " calorias por cada 100 gramos");
+        }
+        else{
+            System.out.println("No se ha ingerido ningun alimento hasta este momento");
         }
     }
 }
