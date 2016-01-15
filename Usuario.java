@@ -151,11 +151,36 @@ public class Usuario
             }
         }
 
-        if (indice > 0){
+        if (indice > 1){
             System.out.println("El alimento " + nombreAlimento + " ha sido ingerido " + indice + " veces.");
+        }
+        else if ( indice == 1){
+            System.out.println("El alimento " + nombreAlimento + " ha sido ingerido solo una vez.");
         }
         else{
             System.out.println("El alimento " + nombreAlimento + " no ha sido ingerido.");
         }
     }
+
+    /**
+     * 
+     */
+    public void alimentosConsumidos(){                
+        for (Alimento alimentoC : alimentos){
+            int indice = 0;
+            String nombreAli = alimentoC.getNombre();
+
+            for (Alimento alimentoC2 : alimentos){
+                String nombreAli2 = alimentoC.getNombre();
+                if (nombreAli2.contains(nombreAli)){
+                    indice = indice + 1;
+                }
+            }
+            
+            if (indice > 1){
+                    System.out.println(nombreAli);
+                }
+        }
+    }
+
 }
