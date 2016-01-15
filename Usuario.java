@@ -121,6 +121,9 @@ public class Usuario
         }
     }
 
+    /**
+     * Metodo para mostrar los datos de un alimento ingerido por el usuario.
+     */
     public void datosDeLosalimentos(int nDeAlimento){
         if (nDeAlimento < alimentos.size()){
             Alimento pedido = alimentos.get(nDeAlimento - 1);
@@ -134,5 +137,25 @@ public class Usuario
         }
     }
 
-    
+    /**
+     * Metodo para saber cuantas veces ha ingerido un alimento el usuario.
+     */
+    public void vecesComido(String nombreAlimento){
+        int indice = 0;
+        String nombreAli;
+
+        for (Alimento aliBuscado : alimentos){
+            nombreAli = aliBuscado.getNombre();
+            if (nombreAli.contains(nombreAlimento)){
+                indice = indice + 1;
+            }
+        }
+
+        if (indice > 0){
+            System.out.println("El alimento " + nombreAlimento + " ha sido ingerido " + indice + " veces.");
+        }
+        else{
+            System.out.println("El alimento " + nombreAlimento + " no ha sido ingerido.");
+        }
+    }
 }
