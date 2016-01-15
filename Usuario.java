@@ -1,3 +1,5 @@
+import java.util.ArrayList;
+
 public class Usuario
 {
     //nombre del usuario
@@ -12,6 +14,8 @@ public class Usuario
     private float caloriasIngeridas;
     //Alimento mas calorico
     private Alimento aliMasCalorico;
+    //Lista de los alimentos ingeridos por el usuario
+    private ArrayList<Alimento> alimentos;
 
     /**
      *Constructor de la clase usuario
@@ -24,6 +28,7 @@ public class Usuario
         grasasIngeridas = 0;
         caloriasIngeridas = 0;
         aliMasCalorico = null;
+        alimentos = new ArrayList<Alimento>();
     }
 
     /**
@@ -35,13 +40,14 @@ public class Usuario
         carbohidratosIngeridos = carbohidratosIngeridos + (alimentoQueCome.getCarbohidratos() / 100 * gramosDelAlimento);
         grasasIngeridas = grasasIngeridas + (alimentoQueCome.getGrasas() / 100 * gramosDelAlimento);
         caloriasIngeridas = caloriasIngeridas + (alimentoQueCome.getCalorias() / 100 * gramosDelAlimento);
-        
+
         if (aliMasCalorico == null || aliMasCalorico.getCalorias() <= alimentoQueCome.getCalorias()){
             aliMasCalorico = alimentoQueCome;
         }
+
+        alimentos.add(alimentoQueCome);
     }
 
-    
     /**
      * Metodo que muestra la informacion de lo ingerido por el usuario.
      */
@@ -74,7 +80,7 @@ public class Usuario
     {
         return nombreCompleto;
     }
-    
+
     /**
      * Metodo que devuelve las calorias ingeridas por el usuario.
      */
@@ -82,7 +88,7 @@ public class Usuario
     {
         return caloriasIngeridas;
     }
-    
+
     /**
      * Metodo para comparar las calorias entre dos usuarios.
      */
@@ -90,9 +96,9 @@ public class Usuario
     {
         String nombreOtro = usuario.getNombre();
         float caloriasOtro = usuario.getCalorias();
-        
+
         if (caloriasIngeridas > caloriasOtro){
-             System.out.println(nombreCompleto + " ha consumido más calorias que " + nombreOtro + " (" + caloriasIngeridas + " frente a " + caloriasOtro + ").");
+            System.out.println(nombreCompleto + " ha consumido más calorias que " + nombreOtro + " (" + caloriasIngeridas + " frente a " + caloriasOtro + ").");
         }
         else if (caloriasIngeridas < caloriasOtro){
             System.out.println(nombreOtro + " ha consumido más calorias que " + nombreCompleto + " (" + caloriasOtro + " frente a " + caloriasIngeridas + ").");
@@ -101,7 +107,7 @@ public class Usuario
             System.out.println(nombreCompleto + " y " + nombreOtro + " han consumido la misma cantidad de calorias (" + caloriasIngeridas + " igual a " + caloriasOtro + ").");
         }
     }
-    
+
     /**
      * Metodo para imprimir el alimento con mayor calorias.
      */
@@ -114,4 +120,19 @@ public class Usuario
             System.out.println("No se ha ingerido ningun alimento hasta este momento");
         }
     }
+
+    public void datosDeLosalimentos(int nDeAlimento){
+        if (nDeAlimento < alimentos.size()){
+            Alimento pedido = alimentos.get(nDeAlimento - 1);
+            pedido.muestraDatos();
+        }
+        else if (nDeAlimento <= 0){
+            System.out.println("Imposible mostrar los datos de un alimento no ingerido.");
+        }
+        else{
+            System.out.println("No se ha ingerido tantos alimentos");
+        }
+    }
+
+    
 }
